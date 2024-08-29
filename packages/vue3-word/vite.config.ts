@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue"
 
 export default function() {
   return defineConfig({
-    plugins: [vue(), test()],
+    plugins: [vue()],
     build: {
       lib: {
         entry: resolve(__dirname, './src/index.ts'),
@@ -28,27 +28,4 @@ export default function() {
       }
     }
   })
-
-
-
-}
-
-
-function test() {
-  return {
-    name: "transfrom-vue",
-    options(options) {
-    },
-    buildStart(options) {
-    },
-    load(id) {
-      console.log('====',id)
-    },
-    transform(code: string, id: string) {
-    },
-    buildEnd() {
-    },
-    closeBundle() {
-    }
-  }
 }

@@ -1,0 +1,17 @@
+{
+  "name": "vue-template",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "vite serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "vite": "^5.4.2",
+    "vue": "^3.4.38"
+  }
+}
