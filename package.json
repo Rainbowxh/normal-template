@@ -13,12 +13,6 @@
       "commit-msg": "pnpm commitlint --edit \"$1\""
     }
   },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint  --fix"
-    ]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -26,6 +20,11 @@
     "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.4.1",
     "husky": "^8.0.0",
-    "lint-staged": "^15.2.9"
+    "lint-staged": "^15.2.9",
+    "vite": "^5.4.2",
+    "vue": "^3.4.38"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.1.2"
   }
 }

@@ -1,28 +1,20 @@
-import { openBlock as c, createElementBlock as i } from "vue";
-function l() {
-  console.log("test");
+import { openBlock as o, createElementBlock as s } from "vue";
+const a = (t, e) => {
+  const c = t.__vccOpts || t;
+  for (const [n, r] of e)
+    c[n] = r;
+  return c;
+}, _ = {};
+function l(t, e) {
+  return o(), s("div", null, " this is a test ");
 }
-const r = (t, s) => {
-  const o = t.__vccOpts || t;
-  for (const [e, n] of s)
-    o[e] = n;
-  return o;
-}, a = {};
-function g(t, s) {
-  return c(), i("div", null, " this is a test ");
-}
-const h = /* @__PURE__ */ r(a, [["render", g]]);
-function f() {
-  console.log(h);
-}
-function _() {
-  return l(), console.log("this is a test"), console.log("this is a test"), console.log("this is a test"), console.log("this is a test"), console.log("this is a test"), "abc";
-}
-function p() {
-  return console.log("this is a test"), console.log("this is a test"), console.log("this is a test"), console.log("this is a test"), console.log("this is a test"), "abc";
-}
+const f = /* @__PURE__ */ a(_, [["render", l]]), d = {
+  install(t, e) {
+    const c = (e == null ? void 0 : e.name) ?? "vue3-word";
+    t.component(c, f);
+  }
+};
 export {
-  f as showVue,
-  _ as test,
-  p as test1
+  d as default,
+  f as test
 };

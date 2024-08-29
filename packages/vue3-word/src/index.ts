@@ -1,26 +1,15 @@
-import t from "./test"
-import testvue from "./test.vue"
-
-export function showVue() {
-  console.log(testvue)
+import { App } from "vue"
+import test from "./test.vue"
+export interface PluginOptions {
+  name?: string
+}
+export default {
+  install(app: App, options?: PluginOptions) {
+    const name = options?.name ?? 'vue3-word'
+    app.component(name, test)
+  }
 }
 
-export function test() {
-  t();
-  console.log('this is a test');
-  console.log('this is a test');
-  console.log('this is a test');
-  console.log('this is a test');
-  console.log('this is a test');
-  return 'abc'
-}
-
-
-export function test1() {
-  console.log('this is a test');
-  console.log('this is a test');
-  console.log('this is a test');
-  console.log('this is a test');
-  console.log('this is a test');
-  return 'abc'
+export {
+  test
 }

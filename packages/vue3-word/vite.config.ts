@@ -21,6 +21,7 @@ export default function() {
       rollupOptions: {
         external: ['vue'],
         output: {
+          exports: 'named',
           entryFileNames: `${pkg.name}.[format].js`,
           chunkFileNames: '[name].[format].js'
         }
