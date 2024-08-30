@@ -1,15 +1,15 @@
 import { App } from "vue"
-import test from "./test.vue"
+import componentA from "./component.vue"
 export interface PluginOptions {
   name?: string
 }
 export default {
   install(app: App, options?: PluginOptions) {
-    const name = options?.name ?? 'vue3-word'
-    app.component(name, test)
+    const name = options?.name ?? 'vue-component'
+    app.component(name, componentA)
   }
 }
 
 export {
-  test
+  componentA
 }

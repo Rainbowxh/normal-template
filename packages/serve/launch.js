@@ -25,10 +25,11 @@ app.use(async (ctx) => {
       // 检查文件是否存在
       const fileStat = await stat(filePath);
       if (fileStat.isFile()) {
-        // 设置内容类型
-        ctx.type = path.extname(filePath);
         // 读取文件内容并响应
-        ctx.body = await readFile(filePath);
+        const file = await readFile(filePath, 'utf-8')
+        ctx.body = file
+         // 设置内容类型
+        ctx.type = path.extname(filePath);
       } else {
         ctx.status = 404;
         ctx.body = 'Not Found';

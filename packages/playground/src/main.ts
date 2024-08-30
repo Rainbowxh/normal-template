@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from "./App.vue";
-import {test} from "../../vue3-word"
+import {test} from "../../vue-component"
 
 const instance = createApp(App)
 

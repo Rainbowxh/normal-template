@@ -1,13 +1,10 @@
 <template>
   <div>
-    dd
-    <test />
+    this is a home A
   </div>
 </template>
 
 <script setup lang="ts">
-import { test } from "../../vue-component";
-console.log(test)
 
 </script>
 

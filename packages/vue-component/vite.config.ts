@@ -9,7 +9,7 @@ export default function() {
     build: {
       lib: {
         entry: resolve(__dirname, './src/index.ts'),
-        name: 'vue3-word',
+        name: 'vue-component',
         formats: ['es', "cjs"],
       },
       terserOptions: {

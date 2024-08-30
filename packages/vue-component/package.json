@@ -1,5 +1,5 @@
 {
-  "name": "vue3-word",
+  "name": "vue-component",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -22,7 +22,7 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/vue3-word.es.js"
+      "import": "./dist/vue-component.es.js"
     }
   },
   "types": "./dist/types/index.d.ts"
