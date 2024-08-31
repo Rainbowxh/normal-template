@@ -1,0 +1,32 @@
+{
+  "name": "vue-component-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/es/index.es.js",
+  "module": "./dist/es/index.es.js",
+  "types": "./dist/types/core/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.es.js",
+      "types": "./dist/types/core/index.d.ts"
+    }
+  },
+  "sideEffect": [],
+  "type": "module",
+  "scripts": {
+    "build-es": "vite build --config vite.config.ts --mode production",
+
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "move-style": "move-file dist/es.index.css dist/index.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "vite": "^5.4.1"
+  },
+  "devDependencies": {
+    "vite-plugin-dts": "^4.0.3"
+  }
+}
