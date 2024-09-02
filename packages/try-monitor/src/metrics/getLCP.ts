@@ -1,29 +1,7 @@
 import { metricsName } from "../enums";
 import { getFirstHiddenTime, observe, onAbort } from "../utils";
 
-const getLCP = (lcp): PerformanceObserver | undefined => {
-  if (!isPerformanceObserverSupported()) {
-    console.warn('browser do not support performanceObserver');
-    return;
-  }
 
-  const firstHiddenTime = getFirstHiddenTime();
-
-  const entryHandler = (entry: PerformanceEntry) => {
-    if (entry.startTime < firstHiddenTime.timeStamp) {
-      lcp.value = entry;
-    }
-  };
-
-  return observe('largest-contentful-paint', entryHandler);
-};
-
-/**
- * @param {metricsStore} store
- * @param {Function} report
- * @param {boolean} immediately, if immediately is true,data will report immediately
- * @param {IScoreConfig} scoreConfig
- * */
 export const initLCP = (
   store: any,
   report: any,

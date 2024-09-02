@@ -9,8 +9,8 @@ export default function() {
     build: {
       lib: {
         entry: resolve(__dirname, './src/index.ts'),
-        name: 'vue-component',
-        formats: ['es', "cjs"],
+        name: 'monitor',
+        formats: ['es', "umd"],
       },
       terserOptions: {
         compress: {
@@ -19,7 +19,6 @@ export default function() {
       },
       outDir: 'dist',
       rollupOptions: {
-        external: ['vue'],
         output: {
           exports: 'named',
           entryFileNames: `${pkg.name}.[format].js`,

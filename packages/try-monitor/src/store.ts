@@ -27,7 +27,7 @@ class metricsStore {
   }
 
   getValues(): any {
-    return Array.from(this.state).reduce((obj, [key, value]) => {
+    return Array.from(this.state).reduce((obj: Record<string, any>, [key, value]) => {
       obj[key] = value;
       return obj;
     }, {});
