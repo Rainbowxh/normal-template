@@ -1,0 +1,30 @@
+{
+  "name": "vue-component",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite serve",
+    "build": "vite build && tsc --emitDeclarationOnly;",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "vue": "^3.4.38"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.1",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/vue-component.es.js"
+    }
+  },
+  "types": "./dist/types/index.d.ts"
+}

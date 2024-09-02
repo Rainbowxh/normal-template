@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="module" src="./src/index.ts"></script>
+</head>
+<body>
+  <div id="app">
+    <div>这是一首小情歌</div>
+  </div>
+  <script>
+  for(let i = 0; i < 10; i++) {
+    setTimeout(() => {
+      const doc = document.getElementById('app');
+        const el = document.createElement('div')
+        el.innerText = 'adslkfjaslfk'
+        doc.append(el)
+        doc.style.marginTop = `${20 * i}px`
+    }, i * 200)
+  }
+</script>
+
+</body>
+</html>
