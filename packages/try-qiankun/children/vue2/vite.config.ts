@@ -1,4 +1,4 @@
-import { defineConfig, optimizeDeps } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig((params) => {
@@ -6,21 +6,11 @@ export default defineConfig((params) => {
   return {
     plugins: [vue()],
     define: {},
-
     server: {
-      port: 3154,
+      port: 3156,
       open: false,
       cors: true,
-      proxy: {
-        "/api": {
-          target: "https://www.baidu.com",
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ""),
-        },
-      },
-    },
-    optimizeDeps: {
-      force: true,
+      proxy: {}
     },
     build: {
       sourcemap: true,

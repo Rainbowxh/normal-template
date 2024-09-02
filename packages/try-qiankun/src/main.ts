@@ -1,14 +1,30 @@
 import { createApp } from "vue";
 import App from "./app.vue";
 import { createRouter, createWebHashHistory }  from "vue-router";
+import { registerMicroApps, start } from "./micro-fe";
 const routes = [
   { path: '/a', component: () => import('./views/home.vue') },
   { path: '/b', component: () => import('./views/home-B.vue')  },
 ]
 
-const func = async () => {
-  const result = await routes[0].component()
-}
+
+registerMicroApps([
+  {
+    name: 'a',
+    localhost: 'localhost:3155',
+    container: '#sub-container',
+    activeRule: '/a',
+  },{
+    name: 'b',
+    localhost: 'localhost:3155',
+    container: '#sub-container',
+    activeRule: '/b',
+  }
+])
+
+
+start()
+
 
 
 
