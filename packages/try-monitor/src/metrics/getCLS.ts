@@ -1,8 +1,7 @@
 import { metricsName } from "../enums";
-import { observe, onAbort } from "../utils";
+import { observe, onHidden } from "../utils";
 
 const getCls = (cls: any) => {
-  console.log('有用吗')
   const handler = (entry: any) => {
     if (!entry.hadRecentInput) {
       cls.value += entry.value;
@@ -23,29 +22,35 @@ export const initCLS = (
   store: any,
   report: any,
 ): void => {
-  let cls = { value: 0 };
-  const po = getCls(cls);
+  let cls: any = { value: 0, entries: [] };
+
+  const handler = (entry: any) => {
+    // Only count layout shifts without recent user input.
+    // Calculate all offset percent;
+    if (!entry.hadRecentInput) {
+      cls.value += entry.value;
+      cls.entries.push(entry)
+    }
+  }
+
+  const po =  observe('layout-shift', handler)
 
   let stop = () => {
     if(po) {
       if (po?.takeRecords) {
-        po.takeRecords().map((entry: any) => {
-          if (!entry.hadRecentInput) {
-            cls.value += entry.value;
-          }
-        });
+        po.takeRecords().map(handler);
       }
       po?.disconnect();
-  
       const metrics = {
         name: metricsName.CLS,
         value: cls.value,
+        entires: cls.entries,
       };
       store.set(metricsName.CLS, metrics);
       report(metrics);
     }
   }
-  onAbort(stop)
+  onHidden(stop)
 };
 
 

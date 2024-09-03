@@ -5,6 +5,7 @@ export default function getPageInfo(store: any, report: any) {
   const { width, height } = window.screen;
 
   const result = {
+    name: metricsName.PI,
     width,
     height,
     host, 

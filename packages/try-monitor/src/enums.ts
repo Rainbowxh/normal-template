@@ -10,6 +10,7 @@ export enum metricsName {
   CLS = 'cumulative-layout-shift',
   FPS = 'fps',
   ACT = 'api-complete-time',
+  TTFB = 'time-to-first-byte',
   /* information */
   DI = 'device-information',
   NI = 'network-information',

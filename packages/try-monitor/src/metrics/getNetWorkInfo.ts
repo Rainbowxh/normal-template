@@ -7,6 +7,8 @@ export default function getNetWorkInfo(store: any, report: any) {
 
   const result = (window.navigator as any).connection
 
+  result.name = metricsName.NT
+
   store.set(metricsName.NT, result)
 
   report(result);

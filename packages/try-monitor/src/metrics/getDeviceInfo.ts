@@ -5,6 +5,7 @@ export default function getDeviceInfo(store: any, report: any) {
     return;
   }
   const result = {
+    name: metricsName.DI,
     //@ts-ignore
     memory: window.performance.memory,
     eventCounts: window.performance.eventCounts,

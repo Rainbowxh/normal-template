@@ -22,7 +22,7 @@ export default function initFCP(store: any, report: any) {
     const metrics = {
       name: metricsName.FCP,
       time: entry.startTime,
-      raw: entry,
+      entries: [entry],
     }
     store.set(metricsName.FCP, metrics)
     report(metrics)

@@ -7,10 +7,9 @@
   <script type="module" src="./src/index.ts"></script>
 </head>
 <body>
-  <div id="app">
-    <div>这是一首小情歌</div>
+  <div id="app" >
   </div>
-  <script>
+  <!-- <script>
   for(let i = 0; i < 10; i++) {
     setTimeout(() => {
       const doc = document.getElementById('app');
@@ -20,7 +19,13 @@
         doc.style.marginTop = `${20 * i}px`
     }, i * 200)
   }
-</script>
+</script> -->
+  <script>
+    const app =document.getElementById('app')
+    setTimeout(() => {
+      app.innerHTML = '<div class="el1" style="width: 100px; height: 100px; background-color: aliceblue;">测试渲染</div><div class="el2" style="width: 100px; height: 100px; background-color: beige;">测试渲染</div><div class="el3" style="width: 100px; height: 100px; background-color: chartreuse;">测试渲染</div><div class="el4" style="width: 100px; height: 100px; background-color: deepskyblue;">测试渲染</div><div class="el5" style="width: 100px; height: 100px; background-color: firebrick;">测试渲染</div><div class="el6" style="width: 100px; height: 100px; background-color: gold;">测试渲染</div><div class="el7" style="width: 100px; height: 100px; background-color: hotpink;">测试渲染</div><div class="el8" style="width: 100px; height: 100px; background-color: indianred;">测试渲染</div><div class="el9" style="width: 100px; height: 100px; background-color: khaki;">测试渲染</div>'
+    },3500)
+  </script>
 
 </body>
 </html>

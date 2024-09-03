@@ -22,7 +22,7 @@ export default function initFP(store: any, report: any) {
     const metrics = {
       name: metricsName.FP,
       time: entry.startTime,
-      raw: entry,
+      entries: [entry],
     }
     store.set(metricsName.FP, metrics)
     report(metrics)
