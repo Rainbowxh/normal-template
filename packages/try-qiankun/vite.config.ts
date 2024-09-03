@@ -6,11 +6,18 @@ export default defineConfig((params) => {
   return {
     plugins: [vue()],
     define: {},
+
     server: {
       port: 3154,
       open: false,
       cors: true,
-      proxy: {}
+      proxy: {
+        "/api": {
+          target: "https://www.baidu.com",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ""),
+        },
+      },
     },
     optimizeDeps: {
       force: true,

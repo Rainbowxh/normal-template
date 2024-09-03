@@ -7,7 +7,7 @@ export default defineConfig((params) => {
     plugins: [vue()],
     define: {},
     server: {
-      port: 3156,
+      port: 3154,
       open: false,
       cors: true,
       proxy: {}

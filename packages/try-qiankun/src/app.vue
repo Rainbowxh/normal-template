@@ -9,7 +9,7 @@
     <div class="right">
       <router-view>
       </router-view>
-      <div id="#renderPlace">this is a environment</div>
+      <div id="#sub-container">this is a environment</div>
     </div>
   </div>
 </template>
