@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount } from 'vue';
 import { RouterView, useRoute, useRouter } from 'vue-router';
+
 const router = useRouter();
 const route = useRoute();
 let nowPath = '/a'
