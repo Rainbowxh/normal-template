@@ -1,1 +1,1 @@
-{"version":3,"file":"getPageInfo.d.ts","sourceRoot":"","sources":["../../../src/metrics/getPageInfo.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,UAAU,WAAW,CAAC,KAAK,EAAE,GAAG,EAAE,MAAM,EAAE,GAAG;;;;;;;;;;;;EAuB1D"}
+{"version":3,"file":"getPageInfo.d.ts","sourceRoot":"","sources":["../../../src/metrics/getPageInfo.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,UAAU,CAAC;AAEvC,MAAM,CAAC,OAAO,UAAU,WAAW,CAAC,KAAK,EAAE,GAAG,EAAE,MAAM,EAAE,GAAG;;;;;;;;;;;;;EAwB1D"}

@@ -181,6 +181,10 @@ export const initWhiteScreenCheck = (config: any = { checkElements: [], debug: t
       }
     }
 
+    const onActivated = (callback) => {
+      
+    } 
+
     initPoints();
     if(debug) {
       debugCanvas();
