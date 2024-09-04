@@ -1,7 +1,7 @@
 {
+  "name": "@vue-component-library/workspace",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,7 +26,10 @@
     "vue": "^3.4.19",
     "vue-component-library": "workspace:*",
     "@vue-component-library/components": "workspace:*",
-    "@vue-component-library/utils": "workspace:*"
+    "@vue-component-library/utils": "workspace:*",
+    "@vue-component-library/docs": "workspace:*",
+    "@vue-component-library/theme": "workspace:*",
+    "@vue-component-library/hooks": "workspace:*"
   },
   "keywords": [],
   "author": "",

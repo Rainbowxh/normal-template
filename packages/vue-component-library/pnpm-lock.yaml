@@ -11,6 +11,15 @@ importers:
       '@vue-component-library/components':
         specifier: workspace:*
         version: link:packages/components
+      '@vue-component-library/docs':
+        specifier: workspace:*
+        version: link:packages/docs
+      '@vue-component-library/hooks':
+        specifier: workspace:*
+        version: link:packages/hooks
+      '@vue-component-library/theme':
+        specifier: workspace:*
+        version: link:packages/theme
       '@vue-component-library/utils':
         specifier: workspace:*
         version: link:packages/utils
