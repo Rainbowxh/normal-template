@@ -1,0 +1,96 @@
+import React from 'react';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  Platform,
+  Dimensions,
+} from 'react-native';
+import Toast from 'react-native-toast-message';
+const windowWidth = Dimensions.get('window').width;
+
+const YqzToast = () => {
+  const toastConfig = {
+    my_custom_type: ({ text1, text2 }: { text1: number; text2: string }) => (
+      <View style={styles.container}>
+        <View>
+          <Image
+            source={require('@assets/img/points.png')}
+            style={styles.icon}
+          />
+        </View>
+        <View>
+          <Text style={styles.points}>{text1}</Text>
+          <Text style={styles.from}>{text2}</Text>
+        </View>
+      </View>
+    ),
+    toast_sign_in_type: ({
+      text1,
+      text2,
+      props,
+    }: {
+      text1: number;
+      text2: string;
+      props: any;
+    }) => (
+      <View style={styles.container}>
+        <View>
+          <Image source={props?.icon || ''} style={styles.icon} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.points}>{text1}</Text>
+          <Text style={styles.from} numberOfLines={1} ellipsizeMode="tail">
+            {text2}
+          </Text>
+        </View>
+      </View>
+    ),
+  };
+  return (
+    <>
+      <Toast
+        topOffset={Platform.OS === 'android' ? 25 : 65}
+        config={toastConfig}
+      />
+    </>
+  );
+};
+const styles = StyleSheet.create({
+  container: {
+    width: windowWidth - 30,
+    height: 70,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+    flexDirection: 'row',
+    shadowColor: 'rgba(0, 0, 0, 0.12)',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    paddingRight: 20,
+  },
+  icon: {
+    width: 30,
+    height: 30,
+    borderRadius: 30,
+    marginLeft: 20,
+    marginRight: 15,
+  },
+  points: {
+    fontWeight: '600',
+    fontSize: 15,
+    lineHeight: 21,
+    marginBottom: 2,
+  },
+  from: {
+    color: 'rgba(155, 155, 155, 1)',
+    fontSize: 14,
+    lineHeight: 20,
+  },
+});
+export default YqzToast;

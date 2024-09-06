@@ -1,0 +1,16 @@
+{
+  "name": "vite-plugin-fast-to",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin typescript",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
+}
