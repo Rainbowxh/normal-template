@@ -1,0 +1,9 @@
+{
+  "container": {
+    "width": "550",
+    "height": "550"
+  },
+  "blocks": [
+    {"type": "text", "top": 50, "zIndex": 100,  "left": 100}
+  ]
+}
