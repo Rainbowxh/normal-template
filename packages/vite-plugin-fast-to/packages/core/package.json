@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "main": "src/utils.ts",
+  "module": "src/index.ts",
   "scripts": {
     "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin typescript",
     "test": "echo \"Error: no test specified\" && exit 1"

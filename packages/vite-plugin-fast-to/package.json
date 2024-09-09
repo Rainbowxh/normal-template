@@ -1,7 +1,9 @@
 {
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "packages/core/src/index.ts",
+  "module": "packages/core/src/index.ts",
   "scripts": {
     "build": "pnpm run --filter vite-plugin-fast-to build",
     "test": "echo \"Error: no test specified\" && exit 1"
