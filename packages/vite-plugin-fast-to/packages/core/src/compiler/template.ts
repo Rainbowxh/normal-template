@@ -22,7 +22,7 @@ export async function compileSFCTemplate(params: any) {
           if (["template", "script", "style"].includes(node.tag)) {
             return;
           }
-          // 添加slot层级
+          // 添加slot层级 组件层级添加没有意义，最后会被编译成 element 的形式
           // if (node.tagType === ElementTypes.COMPONENT) {
           //   const slot: any = node;
           //   slot.path = path;
@@ -60,6 +60,7 @@ function generateProps(name: string, path: string, node: TemplateChildNode) {
 
 function findInsertPosition(type: ElementTypes, node) {
   if (type === ElementTypes.ELEMENT) {
+    //获取标签 attrs 的最后一个位置, 不然为标签的后一个位置
     return node.props.length
       ? Math.max(...node.props.map((i) => i.loc.end.offset))
       : node.loc.start.offset + node.tag.length + 1;

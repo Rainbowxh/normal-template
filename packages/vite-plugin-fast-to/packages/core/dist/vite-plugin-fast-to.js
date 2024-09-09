@@ -16,7 +16,7 @@ async function compileSFCTemplate(params) {
                     if (["template", "script", "style"].includes(node.tag)) {
                         return;
                     }
-                    // 添加slot层级
+                    // 添加slot层级 组件层级添加没有意义，最后会被编译成 element 的形式
                     // if (node.tagType === ElementTypes.COMPONENT) {
                     //   const slot: any = node;
                     //   slot.path = path;
@@ -50,6 +50,7 @@ function generateProps(name, path, node) {
 }
 function findInsertPosition(type, node) {
     if (type === compilerDom.ElementTypes.ELEMENT) {
+        //获取标签 attrs 的最后一个位置, 不然为标签的后一个位置
         return node.props.length
             ? Math.max(...node.props.map((i) => i.loc.end.offset))
             : node.loc.start.offset + node.tag.length + 1;
@@ -79,17 +80,28 @@ function parseVueRequest(id) {
 }
 
 function vitePluginFastTo() {
+    console.log("doing???");
+    /**
+     * 以下的钩子会交替执行
+     * resloveId: 1
+     * resloveId: 2
+     * load: 1
+     * load: 2
+     * transform: 1
+     * transform: 2
+     */
+    let finalConfig = null;
     return [
         {
-            name: 'vite-plugin-fast-to',
-            enforce: 'pre',
+            name: "vite-plugin-fast-to",
+            enforce: "pre",
             apply(_, config) {
                 /**
                  * 决定什么时候开启
                  * 仅仅在serve端开启 vite --mode serve-dev --host
                  */
                 const { command } = config;
-                return command === 'serve';
+                return command === "serve";
             },
             async resolveId(id) {
                 /**
@@ -105,9 +117,8 @@ function vitePluginFastTo() {
                  *  */
             },
             transform(code, id) {
-                // console.log(id)
                 const { filename, query } = parseVueRequest(id);
-                const isVue = filename.endsWith('.vue') && query.type !== 'style' && !query.raw;
+                const isVue = filename.endsWith(".vue") && query.type !== "style" && !query.raw;
                 if (isVue) {
                     const result = compileSFCTemplate({ code, id });
                     return result;
@@ -115,22 +126,117 @@ function vitePluginFastTo() {
                 return code;
             },
             configureServer(server) {
-                console.log(server.printUrls);
                 server.openBrowser;
             },
             transformIndexHtml(html) {
-                console.log('transformIndexHtml', html);
             },
             configResolved() {
                 // console.log('config',name)
             },
             async generateBundle() {
-                console.log('generate');
+                console.log("generate");
             },
             async closeBundle() {
-                console.log('close');
+                console.log("close");
+            },
+        },
+        {
+            name: "vite-plugin-fast-to:post",
+            enforce: "post",
+            apply(_, config) {
+                /**
+                 * 决定什么时候开启
+                 * 仅仅在serve端开启 vite --mode serve-dev --host
+                 */
+                const { command } = config;
+                return command === "serve";
+            },
+            configResolved(resolvedConfig) {
+                // 存储最终解析的配置
+                finalConfig = resolvedConfig;
+                console.log(finalConfig);
+            },
+            transformIndexHtml(html) {
+                const port = finalConfig.server.port;
+                const htmlString = `
+        <style>
+          .vite-fast-to-mask { position: relative; }
+          .vite-fast-to-mask::after { pointer-events: none; position: absolute; content: ''; left: -1px; right: -1px;bottom: -1px;top: -1px; border: 1px solid silver; background-color: rgba(192,192,192,.3); z-index: 10000; }
+        </style>
+        <script>
+          const findRecentNode = (node) => {
+            let target = node
+            let maxCount = 3;
+            while (target && maxCount > 0) {
+              const path =
+                target.attributes && target.attributes['dev-fast-to'] && target.attributes['dev-fast-to'].nodeValue
+              if (path) {
+                return {
+                  target,
+                  path
+                }
+              }
+              target = target.parentNode
+              maxCount--
             }
-        }
+            return {}
+          }
+          const init = () => {
+            const event = (e) => {
+              const { metaKey, target } = e
+              if (metaKey) {
+                const path = findRecentNode(target).path
+                if (path) {
+                  console.log('http://localhost:${port}/__open-in-editor?file=' + path)
+                  fetch('http://localhost:${port}/__open-in-editor?file=' + path)
+                }
+                e.preventDefault()
+                e.stopPropagation()
+              }
+            }
+            window.addEventListener('click', event, { capture: true })
+            const state = {
+              key: '',
+              prev: null,
+            }
+            const onkeydown = (e) => {
+              const { key } = e; 
+              state.key = key;
+              if(key === 'Meta') {
+                window.addEventListener('mousemove', onMousemove)
+              }
+            }
+            const onkeyup = (e) => {
+              state.key = ''
+              window.removeEventListener('mousemove', onMousemove)
+              if(state.prev) {
+                state.prev.classList.remove('vite-fast-to-mask');
+              }
+            }
+            const onMousemove = (e) => {
+              const target = findRecentNode(e.target).target;
+              if(!target) return;
+              // 为了性能控考虑
+              if(target && target === state.prev) {
+                return;              
+              }
+              if(state.prev) {
+                state.prev.classList.remove('vite-fast-to-mask');
+              }
+              target.classList.add('vite-fast-to-mask')
+              state.prev = target
+            }
+            window.addEventListener('keydown', onkeydown, true)
+            window.addEventListener('keyup', onkeyup, true)
+            return () => window.removeEventListener('click', event)
+          }
+          const unmount = init()
+        </script>
+      `;
+                html = html.replace('</head>', `${htmlString}</head>`);
+                return html;
+            }
+        },
     ];
 }
 
