@@ -1,4 +1,4 @@
-import { computed, getCurrentInstance, inject, reactive, toRefs } from "vue";
+import { computed, getCurrentInstance, inject, isRef, reactive, toRefs, watch } from "vue";
 import { PiniaSymbol } from "./rootState";
 
 export function defineStore(idOrOptions: any, setup?: any) {
@@ -42,7 +42,7 @@ export function defineStore(idOrOptions: any, setup?: any) {
 
 function createOptionStore(id: string, options: any, pinia: any, isSetupStore: boolean) {
   const { state, actions, getters } = options;
-  // pinia core generate reactive value;
+  // pinia core generate reactive value
 
   function setup() {
     /**
@@ -73,6 +73,7 @@ function createOptionStore(id: string, options: any, pinia: any, isSetupStore: b
       actions, // 用户提供的行文
       Object.keys(getters).reduce((computeds: any, getterKey) => {
         computeds[getterKey] = computed(() => {
+          const store = pinia._s.get(id);
           return getters[getterKey].call(store)
         })
         return computeds
@@ -81,21 +82,63 @@ function createOptionStore(id: string, options: any, pinia: any, isSetupStore: b
     return result
   }
 
-  const store = createSetupStore(id, setup, pinia, isSetupStore);
+  let _init = {}
+
+  const store: any = createSetupStore(id, setup, pinia, isSetupStore);
+
+  store.$reset = function() {
+    const newState = state ? state() : {}
+    this.$patch(newState);
+  }
 
   return store;
 }
 
+function isObject(v: any) {
+  return typeof v === 'object' && v !== null;
+}
+
 // 创建一个setupStore
 function createSetupStore(id: string, setup: any, pinia: any, isSetupStore: boolean) {
-    
+    function merge(target: any ,partialState: any) {
+      for(const key in partialState) {
+
+        if(!partialState.hasOwnProperty(key)) {
+          continue
+        }
+
+        const targetValue = target[key]
+        const patchValue = partialState[key]
+
+        if(isObject(targetValue) && isObject(patchValue) && !isRef(patchValue)) {
+          target[key] = merge(targetValue, patchValue)          
+        }else {
+          target[key] = patchValue;
+        }
+      }
+      return target;
+    }
+ 
     function $patch(partialStateOrMutator: any) {
-        console.log(pinia.state.value)
+      if(typeof partialStateOrMutator !== 'function') {
+        merge(pinia.state.value[id], partialStateOrMutator)
+      }else {
+        // 自定义函数进行修改
+        partialStateOrMutator(pinia.state.value[id]);
+      }
+    }
+
+
+    function $subscribe(callback: any) {
+      watch(pinia.state.value[id],(newValue, oldValue, onCleanUp) => {
+        // 订阅 traverse 遍历订阅
+        callback({ id }, newValue)
+      }, {deep: true})
     }
   
-  
     const partialStore = {
-      $patch
+      $patch,
+      $subscribe,
     }
 
     const store = reactive(partialStore)
