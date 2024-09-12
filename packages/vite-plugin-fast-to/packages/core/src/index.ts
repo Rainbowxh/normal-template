@@ -79,11 +79,15 @@ function vitePluginFastTo() {
         const { command } = config;
         return command === "serve";
       },
+      buildStart() {
+        console.log("======================")
+      },
+      buildEnd() {
+        console.log("----------------------")
+      },
       configResolved(resolvedConfig) {
         // 存储最终解析的配置
         finalConfig = resolvedConfig;
-        console.log(finalConfig)
-
       },
       transformIndexHtml(html: any) {
         const port = finalConfig.server.port
@@ -129,7 +133,6 @@ function vitePluginFastTo() {
               prev: null,
             }
             const onkeydown = (e) => {
-              console.log('doing?????')
               const { key } = e; 
               state.key = key;
               if(key === 'Meta') {
@@ -167,6 +170,17 @@ function vitePluginFastTo() {
 
         return html
       }
+    },
+
+    {
+      name: "vite:vite-plugin-fast-to-end:post",
+      enforce: "post",
+      buildStart() {
+        console.log("======================")
+      },
+      buildEnd() {
+        console.log("----------------------")
+      },
     },
   ];
 }

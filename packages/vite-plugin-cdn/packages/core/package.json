@@ -1,0 +1,28 @@
+{
+  "name": "vite-plugin-cdn",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/vite-plugin-cdn.js",
+  "module": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vite-plugin-cdn.esm.js"
+    },
+    "./test": {
+        "import": "./dist/test/vite-plugin-cdn.esm.js"
+    }
+  },
+  "scripts": {
+    "dev": "rimraf dist/test && node scripts/dev.js",
+    "build": "rimraf dist && rollup --config rollup.config.ts --configPlugin typescript",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.23.1",
+    "rimraf": "^6.0.1"
+  }
+}

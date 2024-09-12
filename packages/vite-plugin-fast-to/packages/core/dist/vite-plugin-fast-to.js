@@ -95,6 +95,12 @@ function vitePluginFastTo() {
         {
             name: "vite-plugin-fast-to",
             enforce: "pre",
+            buildStart() {
+              console.log('start')
+            },
+            buildEnd() {
+              console.log('end')
+            },
             apply(_, config) {
                 /**
                  * 决定什么时候开启
