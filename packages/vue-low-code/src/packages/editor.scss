@@ -1,0 +1,134 @@
+.editor {
+  width: 100%;
+  height: 100%;
+
+  .editor-left, .editor-right {
+    position: absolute;
+    width: 270px;
+    background-color: red;
+    top: 0px;
+    bottom: 0px;
+  }
+
+  .editor-left {
+    left: 0px;
+  }
+
+  .editor-right {
+    right: 0px;
+  } 
+
+  .editor-top {
+    position: absolute;
+    right: 280px;
+    left: 280px;
+    height: 80px;
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    .editor-top-button {
+      cursor: pointer;
+      border: 1px solid silver;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+    }
+
+    .editor-top-button:hover {
+      background-color: rgba(122,122,122,.1);
+    }
+  }
+
+  .editor-container {
+    padding: 80px 270px 0;
+
+  }
+}
+
+.editor-container-canvas {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: bisque;
+  overflow: scroll;
+  height: 100%;
+
+  .editor-container-canvas_content {
+    position: relative;
+    height: 300px;
+    margin: 20px;
+    border: 1px solid silver;
+  }
+
+}
+
+.editor-block {
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.editor-menu {
+  margin: 10px;
+}
+
+.editor-menu-item {
+  background-color: white;
+  cursor: move;
+  position: relative;
+  margin-bottom: 10px;;
+  display: flex;
+  height: 100px;
+  padding: 20px;
+  border: 1px solid aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  >span {
+    background-color: greenyellow;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.editor-menu-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,.1);
+}
+
+
+.editor-block-focus::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0);
+  border: 1px dashed red;
+}
+
+.mark-line-x {
+  height: 100%;
+  width: 1px;
+  background-color: red;
+  position: absolute;
+  z-index: 1;
+}
+
+.mark-line-y {
+  height: 1px;
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  z-index: 1;
+}
