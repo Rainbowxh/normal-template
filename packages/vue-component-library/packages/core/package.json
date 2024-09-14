@@ -1,9 +1,10 @@
 {
   "name": "vue-component-library",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/es/index.es.js",
-  "module": "./dist/es/index.es.js",
+  "module": "./index.ts",
   "types": "./dist/types/core/index.d.ts",
   "exports": {
     ".": {
@@ -12,10 +13,10 @@
     }
   },
   "sideEffect": [],
-  "type": "module",
   "scripts": {
+    "clean": "rimraf dist",
+    "release": "release-it",
     "build-es": "vite build --config vite.config.ts --mode production",
-
     "test": "echo \"Error: no test specified\" && exit 1",
     "move-style": "move-file dist/es.index.css dist/index.css"
   },

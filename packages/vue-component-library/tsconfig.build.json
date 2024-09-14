@@ -26,6 +26,8 @@
   },
   "include": [
     "packages/core/index.ts",
-    "packages/utils/**/*.ts",
+    "packages/components/index.ts",
+    "packages/components/**/*.ts",
+    "packages/components/**/*.vue",
   ]
 }

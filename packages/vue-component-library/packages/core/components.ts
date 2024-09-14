@@ -1,3 +1,6 @@
-import { ElButton } from "@vue-component-library/components";
+import { ExButton } from "@vue-component-library/components";
+import { Plugin } from "vue";
 
-export default [ElButton]
+export default [ 
+  ExButton as any
+] as Plugin []

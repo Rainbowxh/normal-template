@@ -76,6 +76,7 @@ export function useCommand(data: any) {
       }
     }
   })
+  
   registry({ 
     name: 'drag', // 如果希望将操作放到队列中可以增加一个属性 标识等会操作要放到
     pushQueue:  true,
