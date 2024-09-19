@@ -1,18 +1,15 @@
-import { w as a, m as s } from "./utils-BIVb0z51.js";
-import { defineComponent as c, ref as o, watch as l, h as m, openBlock as r, createBlock as i, resolveDynamicComponent as u } from "vue";
-const d = /* @__PURE__ */ c({
-  name: "ElButton",
+import { w as t, m as n } from "./utils-BIVb0z51.js";
+import { defineComponent as e, openBlock as o, createElementBlock as s } from "vue";
+const a = /* @__PURE__ */ e({
+  name: "ExButton",
   __name: "index",
-  setup(_) {
-    const e = o("dfdf"), t = o();
-    return l(e, (n) => {
-      t.value = m("div", n);
-    }, { immediate: !0 }), setTimeout(() => {
-      console.log("doing?>>>"), e.value = "234324423";
-    }, 2e3), (n, v) => (r(), i(u(t.value)));
+  setup(l) {
+    return (m, i) => (o(), s("div", null, "this is a test"));
   }
-}), p = a(d), f = [p], k = s(f);
+}), r = t(a), c = [
+  r
+], u = n(c);
 export {
-  p as ElButton,
-  k as default
+  r as ExButton,
+  u as default
 };

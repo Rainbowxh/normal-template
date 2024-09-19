@@ -1,16 +1,21 @@
+import type { App, Plugin } from "vue";
 
-export function makeInstaller(components: any []) {
-  const installer = (app: any) => components.forEach((c) => {
-    app.use(c)
-  })
-  return installer
+type SFCWithInstall<T> = T & Plugin;
+
+export function makeInstaller(components: Plugin[]) {
+  const installer = (app: App) =>
+    components.forEach((c) => {
+      app.use(c);
+    });
+
+  return installer;
 }
 
 export const withInstall = <T>(component: T) => {
-    (component as any).install = (app: any) => {
-      const name = (component as {name: string}).name;
-      app.component(name, component)
-    }
+  (component as SFCWithInstall<T>).install = (app: any) => {
+    const name = (component as { name: string }).name;
+    app.component(name, component);
+  };
 
-    return component
-} 
+  return component;
+};

@@ -1,11 +1,10 @@
 <template>
-  <div>this is a test</div>
+  <div>
+    Hello world
+  </div>
 </template>
 
 <script setup lang="ts">
-defineOptions({
-  name: 'ExButton'
-})
 
 </script>
 
