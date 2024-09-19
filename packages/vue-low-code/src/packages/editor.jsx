@@ -10,7 +10,7 @@ import { useCommand } from "./useCommand";
 export default defineComponent({
   setup() {
     const { data, containerRef } = inject("main");
-    const tRef = ref();
+    
     const containerStyles = computed(() => ({
       width: data.value.container.width + "px",
       height: data.value.container.height + "px",

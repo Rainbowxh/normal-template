@@ -9,6 +9,8 @@ export function useBlockDragger(data: any, lastSelectBlock: any ,container: any)
     startPos: [],
   };
 
+  console.log("=======", dragState)
+
   let markLine = reactive({
     x: 0,
     y: 0,

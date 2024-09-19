@@ -154,9 +154,7 @@ export function useCommand(data: any) {
       command.init && state.destroyArray.push(command.init());
     })
 
-    const cpy = myDeepCopy(data.value.blocks)
-    console.log(cpy)
-
+    const cpy = deepcopy(data.value.blocks)
     setTimeout(() => {
       data.value.blocks[0].xxxx = '123'
       console.log(cpy)
@@ -165,8 +163,6 @@ export function useCommand(data: any) {
 
 
   })()
-
-
 
   onUnmounted(() => {
     state.destroyArray.forEach((func: any) => {
@@ -178,19 +174,3 @@ export function useCommand(data: any) {
 }
 
 
-function myDeepCopy(obj: any, cache = new WeakMap()) {
-  if ( obj === 'null' ||  typeof obj !== 'object' ) {
-    return obj;
-  }
-
-  let _cache = cache.get(obj);
-  if (_cache) return _cache
-
-  const copy: any = Array.isArray(obj) ? [] : {}
-
-  Object.keys(obj).forEach((key) => {
-    copy[key] = myDeepCopy(obj[key])
-  })
-  cache.set(obj, copy);
-  return copy
-}
