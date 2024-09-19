@@ -1,0 +1,63 @@
+<template>
+  <div class="low-container" ref="containerRef">
+    <div class="low-container-left">
+      <!-- render operator here -->
+      <Templates />
+    </div>
+    <div class="low-container-center">
+      <!-- render main content here -->
+      <Preview />
+    </div>
+    <div class="low-container-right">
+      <!-- render right editor here -->
+      <Operator />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+// templates
+import Operator from './operator.vue';
+import { Templates } from './templates/index.tsx';
+import { Preview } from './preview/preview.tsx';
+
+
+// import from vue
+import { ref, onMounted } from 'vue';
+
+import { useDataStore } from './pinia/data.pinia';
+import { EnumRefs } from './pinia/data.pinia';
+
+const store = useDataStore();
+
+const containerRef = ref(null);
+
+onMounted(() => {
+  store.registerRef(EnumRefs.container, containerRef)
+});
+
+</script>
+
+<style scoped>
+.low-container {
+  border: 1px solid red;
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+}
+
+.low-container-left {
+  width: 20%;
+  border: 1px solid blue;
+}
+
+.low-container-center {
+  width: 60%;
+  border: 1px solid green;
+}
+
+.low-container-right {
+  width: 20%;
+  border: 1px solid yellow;
+}
+</style>
