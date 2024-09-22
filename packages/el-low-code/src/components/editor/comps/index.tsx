@@ -12,7 +12,7 @@ type Comp = {
   name: string
   defaultProps: {}
   preview: () => VNode
-  render: () => VNode
+  render: (props: any) => VNode
 }
 
 function createConfigs() {
@@ -42,14 +42,14 @@ export const comps = createConfigs()
 comps.register({
   name: CompName.Text,
   defaultProps: {},
-  preview: (component) => {
+  preview: () => {
     return (
       <ButtonWrapper>
         <div>{CompName.Text}</div>
       </ButtonWrapper>
     )
   },
-  render: () => <div>Text</div>
+  render: (props: any) => <div>{ props.content }</div>
 })
 
 comps.register({

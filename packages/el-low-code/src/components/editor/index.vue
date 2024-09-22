@@ -28,18 +28,19 @@ import { ref, onMounted } from 'vue';
 import { useDataStore } from './pinia/data.pinia';
 import { EnumRefs } from './pinia/data.pinia';
 
-const store = useDataStore();
+const dataStore = useDataStore();
 
 const containerRef = ref(null);
 
 onMounted(() => {
-  store.registerRef(EnumRefs.container, containerRef)
+  dataStore.refs.container = containerRef.value;
 });
 
 </script>
 
 <style scoped>
 .low-container {
+  position: relative;
   border: 1px solid red;
   box-sizing: border-box;
   height: 100vh;
@@ -52,6 +53,7 @@ onMounted(() => {
 }
 
 .low-container-center {
+  position: relative;
   width: 60%;
   border: 1px solid green;
 }

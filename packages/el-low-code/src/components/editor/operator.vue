@@ -1,21 +1,19 @@
 <template>
   <div @click="onclick">
-    this is a test
+    这里是操作属性
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, defineOptions, onActivated } from 'vue';
+import { onMounted, onActivated } from 'vue';
 import { useDataStore } from './pinia/data.pinia';
 
-const store = useDataStore();
 
 defineOptions({
   name: 'operator'
 })
 
-const onclick = () => {
-}
+const onclick = () => {}
 
 </script>
 

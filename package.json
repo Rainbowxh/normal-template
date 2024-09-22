@@ -8,23 +8,19 @@
     "build": "pnpm --filter vue-component build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "pnpm commitlint --edit \"$1\""
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.4.1",
-    "husky": "^8.0.0",
     "lint-staged": "^15.2.9",
     "vite": "^5.4.2",
     "vue": "^3.4.38"
   },
   "dependencies": {
-    "@vitejs/plugin-vue": "^5.1.2"
+    "@vitejs/plugin-vue": "^5.1.2",
+    "arcon": "^0.1.1",
+    "magic-string": "^0.30.11"
   }
 }

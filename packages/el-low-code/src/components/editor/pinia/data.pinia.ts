@@ -1,24 +1,21 @@
 import { defineStore } from 'pinia'
-import { reactive, ref, shallowReadonly, type VNodeRef } from 'vue'
+import { reactive, ref, shallowReadonly, toRaw, toRefs, type VNodeRef } from 'vue'
 import { comps } from '@/components/editor/comps/index'
 
 export enum EnumRefs {
-  container = 'container'
+  container = 'container',
+  currentPreview = 'currentPreview'
 }
 
 export const useDataStore = defineStore('data', () => {
-  // everythings in refs are refs
-  const refs = reactive<Record<EnumRefs, null | VNodeRef>>({
-    container: null
+  // everything in refs are refs
+  const refs = reactive<Record<any, any>>({
+    container: null,
+    currentPreview: null,
   })
 
-  const registerRef = (name: EnumRefs, ref: null | VNodeRef) => {
-    refs[name] = ref
-  }
-
   return {
-    refs: shallowReadonly(refs), // prevent reactive object from being changed
+    refs, // prevent reactive object from being changed
     comps,
-    registerRef
   }
 })
