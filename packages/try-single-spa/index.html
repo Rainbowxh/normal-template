@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const test = function(name) {
+      window.location.replace('#/' + name)
+    }
+  </script>
+  
+  <div style="display: flex; gap: 10px;">
+    <div style="cursor: pointer;" onclick="test('a')">这是a</div>
+    <div style="cursor: pointer;" onclick="test('b')">这是b</div>
+  </div>
+  <div id="app"></div>
+  <div id="a"></div>
+  <div id="b"></div>
+
+  <script src="./src/single-spa.js" type="module"></script>
+  
+  <div id="shadowDom"></div>
+
+  <style>div { color: blue }</style>
+
+  <script>
+    const el = document.getElementById('shadowDom')
+
+    const appElement = document.createElement('div')
+    const template = "<div><div>abc</div><style>div{color: red}</style></div>"
+    
+    let shadowDom = appElement.attachShadow({ mode: 'closed' })
+    shadowDom.innerHTML = template
+
+    el.appendChild(appElement)
+  </script>
+</body>
+</html>
