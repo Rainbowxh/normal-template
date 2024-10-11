@@ -25,6 +25,6 @@
   "ts-node": {
     "esm": true
   },
-  "include": ["packages/**/*.ts"],
+  "include": ["packages/**/*.ts", "src/**/*.vue", "typings/**/*.d.ts"],
   "exclude": ["node_modules", "dist/**"]
 }

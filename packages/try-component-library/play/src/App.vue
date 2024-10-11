@@ -1,11 +1,14 @@
 <template>
-  <Icon></Icon>
+  <e-form>
+    <e-form-item></e-form-item>
+    <e-form-item></e-form-item>
+    <e-form-item></e-form-item>
+    <e-form-item></e-form-item>
+  </e-form>
 </template>
 
 <script setup lang="ts">
-import Icon from "@try-component-library/components/icon/src/icon.vue"
 
-console.log(Icon)
 
 </script>
 
