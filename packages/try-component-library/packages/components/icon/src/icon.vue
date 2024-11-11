@@ -27,8 +27,6 @@ const style = computed(() => {
     color: props.color || ''
   }
 });
-
-
 </script>
 
 <style scoped></style>

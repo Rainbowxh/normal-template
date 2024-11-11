@@ -63,7 +63,7 @@ function createBEM(prefixName: string) {
   };
 }
 
-// const b = createBEM('button')
+const b = createBEM('button')
 // console.log(b.b('box'))
 // console.log(b.e('element'))
 // console.log(b.m('modifier'))

@@ -1,6 +1,5 @@
 import { defineComponent, onMounted, Ref, toRef } from 'vue'
 import { useDataStore } from '../pinia/data.pinia'
-import { usePreviewStore } from '../pinia/preview.pinia'
 
 export type Operator = {
   ondragstart?: (operator: any) => void

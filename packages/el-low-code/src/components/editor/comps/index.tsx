@@ -1,11 +1,14 @@
 import { reactive, VNode } from 'vue'
-import { DecorationButton } from './decoration-button'
 import { ButtonWrapper, DragWrapper } from '../wrappers'
 
 export enum CompName {
   Text = 'Text',
   Tag = 'Tag',
-  Image = 'Image'
+  Image = 'Image',
+  Input = 'Input',
+  Radio =  'Radio',
+  Select = 'Select',
+  Upload = 'upload',
 }
 
 type Comp = {
@@ -13,6 +16,8 @@ type Comp = {
   defaultProps: {}
   preview: () => VNode
   render: (props: any) => VNode
+  linkRule?: () => {},
+  requireRule?: () => {}
 }
 
 function createConfigs() {
@@ -62,5 +67,52 @@ comps.register({
       </ButtonWrapper>
     )
   },
-  render: () => <div>Tag</div>
+  render: (props: any) => <div>{ props.content }</div>
 })
+
+
+comps.register({
+  name: CompName.Input,
+  defaultProps: {
+    style: "width: 240px",
+    placeholder: '这是内容'
+  },
+  preview: () => {
+    return (
+      <ButtonWrapper draggable="true">
+        <div>{CompName.Input}</div>
+      </ButtonWrapper>
+    )
+  },
+  render: (props: any) => {
+    return <el-input style={props.style} placeholder={props.placeholder}></el-input>
+  }
+})
+
+
+comps.register({
+  name: CompName.Select,
+  defaultProps: {
+    style: "width: 240px",
+    placeholder: '这是内容',
+    options: [
+      {label: '选项1', value: '1'},
+      {label: '选项2', value: '2'},
+    ]
+  },
+  preview: () => {
+    return (
+      <ButtonWrapper draggable="true">
+        <div>{CompName.Select}</div>
+      </ButtonWrapper>
+    )
+  },
+  render: (props: any) => {
+    return (
+      <el-select style={props.style}>
+        {props.options.map(opt => <el-option label={opt.label} value={opt.value}></el-option>)}
+      </el-select>
+    )
+  }
+})
+

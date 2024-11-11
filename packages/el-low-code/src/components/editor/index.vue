@@ -1,15 +1,12 @@
 <template>
   <div class="low-container" ref="containerRef">
     <div class="low-container-left">
-      <!-- render operator here -->
       <Templates />
     </div>
     <div class="low-container-center">
-      <!-- render main content here -->
       <Preview />
     </div>
     <div class="low-container-right">
-      <!-- render right editor here -->
       <Operator />
     </div>
   </div>

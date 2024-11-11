@@ -1,8 +1,15 @@
 <template>
-  <e-icon color="red" size="12"></e-icon>
+  <e-form>
+    <e-form-item></e-form-item>
+    <e-form-item></e-form-item>
+    <e-form-item></e-form-item>
+    <e-form-item></e-form-item>
+  </e-form>
 </template>
 
 <script setup lang="ts">
+
+
 </script>
 
 <style scoped>
