@@ -11,25 +11,30 @@ const stat = util.promisify(fs.stat);
 const readFile = util.promisify(fs.readFile);
 
 // 本地目录路径
-const localDir = path.resolve(__dirname,'..','..');
+const localDir = path.resolve(__dirname);
 
 app.use(async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   ctx.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   // 检查请求路径是否以 /xxx 开头
+
   if (ctx.path.startsWith('/')) {
     // 获取本地文件路径
     const filePath = path.join(localDir, ctx.path.replace('/', ''));
+    
     try {
       // 检查文件是否存在
       const fileStat = await stat(filePath);
+
       if (fileStat.isFile()) {
         // 读取文件内容并响应
         const file = await readFile(filePath, 'utf-8')
         ctx.body = file
          // 设置内容类型
         ctx.type = path.extname(filePath);
+        ctx.type = 'text/javascript'
+        console.log('loading once')
       } else {
         ctx.status = 404;
         ctx.body = 'Not Found';

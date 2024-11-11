@@ -50,8 +50,6 @@ function analysis(ast, code, module) {
         })
       }
     }
-
-
   });
 
   // 开启第二轮循环，创建作用域链

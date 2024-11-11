@@ -45,6 +45,7 @@ class Module {
     const result = []
 
     const _dependsOn = Object.keys(statement._dependsOn);
+    
     _dependsOn.forEach(name => {
       this.definitions = this.define(name)
       result.push(statement);
@@ -54,6 +55,7 @@ class Module {
     result.push(statement)
     return result;
   } 
+
   define(name) {
     if(Object.hasOwnProperty(this.imports, name)) {
       const { source, importName } = this.imports[name]

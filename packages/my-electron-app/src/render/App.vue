@@ -1,10 +1,11 @@
 <template>
-  <e-icon color="red" size="12"></e-icon>
+  <div>
+    hello vue
+  </div>
 </template>
 
 <script setup lang="ts">
 </script>
 
 <style scoped>
-
 </style>

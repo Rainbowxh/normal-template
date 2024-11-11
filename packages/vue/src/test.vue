@@ -5,6 +5,11 @@
 </template>
 
 <script setup lang="ts">
+
+import('http://localhost:3150/test.js').then((res) => {
+  console.log(res)
+})
+
 const prop = defineProps({
   name: {
     type: Object,

@@ -3,7 +3,6 @@ function walk(astNode, { enter, leave }) {
 }
 
 function visit(node, parent, enter, leave) {
-  console.log(node)
   if (!node.type) return;
 
   if (enter) {

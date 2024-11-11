@@ -63,11 +63,11 @@ function createBEM(prefixName: string) {
   };
 }
 
-const b = createBEM('button')
-console.log(b.b('box'))
-console.log(b.e('element'))
-console.log(b.m('modifier'))
-console.log(b.be('box', 'element'))
-console.log(b.bm('box', 'modifier'))
-console.log(b.bem('box','element' , 'modifier'))
-console.log(b.is('checked', true))
+// const b = createBEM('button')
+// console.log(b.b('box'))
+// console.log(b.e('element'))
+// console.log(b.m('modifier'))
+// console.log(b.be('box', 'element'))
+// console.log(b.bm('box', 'modifier'))
+// console.log(b.bem('box','element' , 'modifier'))
+// console.log(b.is('checked', true))
